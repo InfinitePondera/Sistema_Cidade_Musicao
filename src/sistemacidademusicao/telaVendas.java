@@ -33,6 +33,7 @@ public class telaVendas extends javax.swing.JFrame {
         closeButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
 
