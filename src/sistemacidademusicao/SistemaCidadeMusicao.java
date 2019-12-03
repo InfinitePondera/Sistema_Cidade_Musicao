@@ -6,6 +6,9 @@ public class SistemaCidadeMusicao {
        telaIntroducao tela = new telaIntroducao();
        tela.setLocationRelativeTo(null);
        tela.show();
+       connectDB con = new connectDB();
+       con.connection_test();
+       con.create_database();
     }
     
 }

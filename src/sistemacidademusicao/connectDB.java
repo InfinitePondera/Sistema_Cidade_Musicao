@@ -25,6 +25,62 @@ public class connectDB {
         }
     }
     
+    void create_database(){
+        try{
+            conexao = DriverManager.getConnection(url, usuario, senha);
+            stmt = conexao.createStatement();
+            String sql = "CREATE TABLE if not exists PRODUTO(CODIGO INT, PRECO FLOAT, NOME VARCHAR(30), QUANTIDADE INT);" +
+                "CREATE TABLE if not exists VENDAS(IDNOTAFISCAL INT, DATAVENDA DATE, PRECO FLOAT, FK_EMPREGADO_ID INT);" +
+                "CREATE TABLE if not exists EMPREGADO(ID INT, NOME VARCHAR(30), SALARIO FLOAT);" +
+                "CREATE TABLE if not exists GERENTE(ID INT, SENHA VARCHAR(30));" +
+                "CREATE TABLE if not exists FORNECEDOR(IDFORN INT, NOME VARCHAR(30), CNPJ INT);" +
+                "CREATE TABLE if not exists CLIENTE(CPF INT, NOME VARCHAR(30));" +
+                "CREATE TABLE if not exists ENDERECO(CEP INT, RUA VARCHAR(30), NUMERO INT);" +
+                "CREATE TABLE if not exists CONSERVADOS(CODIGO INT);" +
+                "CREATE TABLE if not exists FRIOS(CODIGO INT);" +
+                "CREATE TABLE if not exists PADARIA(CODIGO INT);" +
+                "CREATE TABLE if not exists BEBIDAS(CODIGO INT);" +
+                "CREATE TABLE if not exists LIMPEZA(CODIGO INT);" +
+                "CREATE TABLE if not exists VERDES(CODIGO INT);" +
+                "CREATE TABLE if not exists REFRIGERADOS(CODIGO INT);" +
+                "CREATE TABLE if not exists PERFUMARIA(CODIGO INT);" +
+                "CREATE TABLE if not exists PETS(CODIGO INT);" +
+                "ALTER TABLE PRODUTO ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE VENDAS ADD PRIMARY KEY(IDNOTAFISCAL);" +
+                "ALTER TABLE EMPREGADO ADD PRIMARY KEY(ID);" +
+                "ALTER TABLE GERENTE ADD PRIMARY KEY(ID);" +
+                "ALTER TABLE CLIENTE ADD PRIMARY KEY(CPF);" +
+                "ALTER TABLE ENDERECO ADD PRIMARY KEY(CEP);" +
+                "ALTER TABLE CONSERVADOS ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE FRIOS ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE PADARIA ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE BEBIDAS ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE LIMPEZA ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE VERDES ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE REFRIGERADOS ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE PERFUMARIA ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE PETS ADD PRIMARY KEY(CODIGO);" +
+                "ALTER TABLE VENDAS ADD FOREIGN KEY(FK_EMPREGADO_ID) REFERENCES EMPREGADO(ID);" +
+                "ALTER TABLE GERENTE ADD FOREIGN KEY(ID) REFERENCES EMPREGADO(ID);" +
+                "ALTER TABLE CONSERVADOS ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE FRIOS ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE PADARIA ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE BEBIDAS ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE LIMPEZA ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE VERDES ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE REFRIGERADOS ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE PERFUMARIA ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);" +
+                "ALTER TABLE PETS ADD FOREIGN KEY(CODIGO) REFERENCES PRODUTO(CODIGO);";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conexao.close();
+            JOptionPane.showMessageDialog(null, "Banco criado!");
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     void insereConservado(int Codigo, double Preco, String Nome, int quant){
         try{
             conexao = DriverManager.getConnection(url, usuario, senha);
@@ -170,7 +226,7 @@ public class connectDB {
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso");
         }
         catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Nao foi possivel inserir dados");
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     void removeLimpeza(int Codigo){
