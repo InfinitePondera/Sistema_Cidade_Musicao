@@ -46,24 +46,18 @@ public class Cliente {
         }
     }
     
-    List<Cliente> buscaCliente(int CPF){
+    ResultSet buscaCliente(int CPF){
         connectDB con = new connectDB();
-	List<Cliente> clie = new ArrayList();
+        Cliente cli = new Cliente();
         try{
             Connection conexao = DriverManager.getConnection(con.url, con.usuario, con.senha);
             Statement stmt = conexao.createStatement();
             String sql = "SELECT NOME FROM CLIENTE WHERE CPF = "+CPF;
             stmt.executeQuery(sql);
-            ResultSet res = stmt.getResultSet();
-	    while(){
-	    	Cliente cli = new Cliente();
-                cli.setCPF(res.getInt("codigo"));
-                cli.setNome(res.getString("nome"));
-                clie.add(cli);
-	    }    
+            ResultSet res = stmt.getResultSet();    
             stmt.close();
             conexao.close();
-            return cli;
+            return res;
         }
         catch(SQLException e){
             ResultSet res = null;
