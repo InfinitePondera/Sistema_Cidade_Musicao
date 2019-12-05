@@ -18,6 +18,8 @@ public class telaVendas extends javax.swing.JFrame {
      */
     public telaVendas() {
         initComponents();
+        String[] tabela = new String[]{"IDNOTAFISCAL", "DATAVENDA", "PRECO", "ID FUNCIONARIO"};
+        DefaultTableModel model = new DefaultTableModel(null, tabela);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +42,7 @@ public class telaVendas extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 255));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Base de dados das vendas");
 
         vendaTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -56,6 +59,7 @@ public class telaVendas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(vendaTable);
 
         buttonBusca.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        buttonBusca.setForeground(new java.awt.Color(0, 0, 0));
         buttonBusca.setText("Buscar");
         buttonBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +148,7 @@ public class telaVendas extends javax.swing.JFrame {
         String[] tabela = new String[]{"IDNOTAFISCAL", "DATAVENDA", "PRECO", "ID FUNCIONARIO"};
         DefaultTableModel model = new DefaultTableModel(null, tabela);
         vendaTable.setModel(model);
+        vend = ven.consultaVendas();
         try{
             vend.forEach(ven1->{
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  

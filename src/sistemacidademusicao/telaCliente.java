@@ -49,6 +49,7 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel2.setText("CPF do Cliente:");
 
         buttonCadastrarCliente.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        buttonCadastrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         buttonCadastrarCliente.setText("Cadastrar Cliente");
         buttonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,16 +58,19 @@ public class telaCliente extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Rua:");
 
         fieldRua.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Número:");
 
         fieldNumero.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("CEP:");
 
         fieldCEP.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -79,6 +83,7 @@ public class telaCliente extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cadastro de Clientes");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -190,7 +195,7 @@ public class telaCliente extends javax.swing.JFrame {
         Cliente cli = new Cliente();
         if(fieldCPF.getText().trim().length() > 0 | fieldNome.getText().trim().length() > 0 | fieldCEP.getText().trim().length() > 0 | fieldRua.getText().trim().length() > 0 | fieldNumero.getText().trim().length() > 0){
             cli.insereCliente(Integer.parseInt(fieldCPF.getText()), fieldNome.getText(), Integer.parseInt(fieldCEP.getText()), fieldRua.getText(), Integer.parseInt(fieldNumero.getText()));
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Insira valores em todas as caixas para cadastrar um cliente");

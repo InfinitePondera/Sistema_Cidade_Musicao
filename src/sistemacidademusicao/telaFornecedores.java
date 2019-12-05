@@ -5,8 +5,6 @@
  */
 package sistemacidademusicao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,6 +21,9 @@ public class telaFornecedores extends javax.swing.JFrame {
      */
     public telaFornecedores() {
         initComponents();
+        String[] tabela = new String[]{"IDFORN", "NOME", "CNPJ"};
+        DefaultTableModel model = new DefaultTableModel(null, tabela);
+        tableForn.setModel(model);
     }
 
     /**

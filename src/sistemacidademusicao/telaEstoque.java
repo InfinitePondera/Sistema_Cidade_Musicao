@@ -5,8 +5,6 @@
  */
 package sistemacidademusicao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +20,9 @@ public class telaEstoque extends javax.swing.JFrame {
      */
     public telaEstoque() {
         initComponents();
+        String[] colunas = {"CODIGO", "PRECO", "NOME", "QUANTIDADE"};
+        DefaultTableModel model = new DefaultTableModel(null, colunas);
+        tableProdutos.setModel(model);
     }
 
     /**
@@ -64,16 +65,19 @@ public class telaEstoque extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 255));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Codigo do produto:");
 
         fieldCod.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome do produto:");
 
         fieldNome.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Quantidade:");
 
         fieldQuantidade.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -86,6 +90,7 @@ public class telaEstoque extends javax.swing.JFrame {
         });
 
         buttonCadastrar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        buttonCadastrar.setForeground(new java.awt.Color(0, 0, 0));
         buttonCadastrar.setText("Cadastrar Produto");
         buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +99,7 @@ public class telaEstoque extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Base de dados de produtos");
 
         tableProdutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -112,6 +118,7 @@ public class telaEstoque extends javax.swing.JFrame {
         fieldCodBusca.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         buttonBuscar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        buttonBuscar.setForeground(new java.awt.Color(0, 0, 0));
         buttonBuscar.setText("Buscar");
         buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,9 +127,11 @@ public class telaEstoque extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Código do produto:");
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Categoria:");
 
         fieldPreco.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -130,11 +139,13 @@ public class telaEstoque extends javax.swing.JFrame {
         fieldCatBusca.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Preço:");
 
         fieldCatCadastro.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Categoria:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -146,34 +157,8 @@ public class telaEstoque extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fieldQuantidade)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fieldPreco))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fieldCatCadastro))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(fieldCodBusca)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(203, 203, 203)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(236, 236, 236)
                                 .addComponent(jLabel4))
@@ -186,7 +171,36 @@ public class telaEstoque extends javax.swing.JFrame {
                                 .addComponent(buttonBuscar))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(fieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fieldQuantidade)))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fieldPreco))))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fieldCatCadastro))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -309,11 +323,17 @@ public class telaEstoque extends javax.swing.JFrame {
         }
         else{
             if(fieldCodBusca.getText().trim().length() > 0){
-                pro = pro.consultaEstoque(Integer.parseInt(fieldCodBusca.getText()));
-                model.addRow(new String[]{Integer.toString(pro.getCodigo()), Double.toString(pro.getPreco()), pro.getNome(), Integer.toString(pro.getQuantidade())});
+                try{
+                    pro = pro.consultaEstoque(Integer.parseInt(fieldCodBusca.getText()));
+                    model.addRow(new String[]{Integer.toString(pro.getCodigo()), Double.toString(pro.getPreco()), pro.getNome(), Integer.toString(pro.getQuantidade())});
+                }
+                catch(RuntimeException e){
+                    JOptionPane.showMessageDialog(rootPane, e);
+                }
             }
-            else prod = pro.consultaEstoque(fieldCatBusca.getText().toLowerCase());
-            try{
+            else{
+                prod = pro.consultaEstoque(fieldCatBusca.getText().toLowerCase());
+                try{
                 prod.forEach(pro1->{
                     model.addRow(new String[]{Integer.toString(pro1.getCodigo()),
                         Double.toString(pro1.getPreco()),
@@ -321,9 +341,11 @@ public class telaEstoque extends javax.swing.JFrame {
                         Integer.toString(pro1.getQuantidade())});
                 });
             }
-            catch(RuntimeException e){
-                JOptionPane.showMessageDialog(null, e);
+                catch(RuntimeException e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
             }
+            
         }
     }//GEN-LAST:event_buttonBuscarActionPerformed
 

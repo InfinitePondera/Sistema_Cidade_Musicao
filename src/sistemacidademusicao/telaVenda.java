@@ -5,11 +5,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class telaVenda extends javax.swing.JFrame {
@@ -19,6 +17,7 @@ public class telaVenda extends javax.swing.JFrame {
         jPanel1.setBackground(Color.red);
         jPanel2.setBackground(Color.blue);
         fieldID.setEditable(false);
+        fieldID.setText("1");
     }
 
     public void saveNota(){
@@ -149,6 +148,7 @@ public class telaVenda extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CPF do Cliente(Caso Cadastrado):");
 
         fieldCPFCliente.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -290,9 +290,9 @@ public class telaVenda extends javax.swing.JFrame {
     private void buttonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagarActionPerformed
         Cliente cli = new Cliente();
         Venda vend = new Venda();
-        fieldID.setText("1");
+
         if(!fieldCPFCliente.getText().equals("")){
-            cli = cli.getDBInfo(Integer.parseInt(fieldCPFCliente.getText()));
+            cli = cli.buscaCliente(Integer.parseInt(fieldCPFCliente.getText()));
             if(Integer.parseInt(fieldCPFCliente.getText()) == cli.getCPF()){
                 fieldTotal.setText(Double.toString(Double.parseDouble(fieldTotal.getText())*0.85));
             }

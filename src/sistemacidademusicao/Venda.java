@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -60,7 +59,6 @@ public class Venda {
             Statement stmt = conexao.createStatement();
             Date data  = new Date(dataVenda.getTimeInMillis());
             String sql1 = "INSERT INTO VENDAS VALUES("+IDNotaFiscal+", '"+data+"', "+preco+", "+idfun+");";
-            
             stmt.executeUpdate(sql1);
             stmt.close();
             conexao.close();

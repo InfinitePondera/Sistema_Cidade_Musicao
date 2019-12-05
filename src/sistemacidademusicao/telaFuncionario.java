@@ -48,6 +48,7 @@ public class telaFuncionario extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 255));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ID do funcionário:");
 
         closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/rsz_close-x-cross-multiply-delete-cancel-modal-error-no-512.png"))); // NOI18N
@@ -60,16 +61,19 @@ public class telaFuncionario extends javax.swing.JFrame {
         fieldIDForn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Salário:");
 
         fieldNome.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nome do funcionário:");
 
         fieldSalario.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
         buttonCadastrarFuncionario.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        buttonCadastrarFuncionario.setForeground(new java.awt.Color(0, 0, 0));
         buttonCadastrarFuncionario.setText("Cadastrar Funcionario");
         buttonCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

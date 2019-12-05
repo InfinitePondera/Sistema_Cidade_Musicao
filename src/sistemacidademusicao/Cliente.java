@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 
 public class Cliente {
 
@@ -29,15 +28,22 @@ public class Cliente {
     public void setCPF(int CPF) {
         this.CPF = CPF;
     }
-
-    public Cliente getDBInfo(int cod){
+    
+    public Cliente buscaCliente(int CPF){
+        connectDB con = new connectDB();
         Cliente cli = new Cliente();
         try{
-            ResultSet res = buscaCliente(cod);
+            Connection conexao = DriverManager.getConnection(con.url, con.usuario, con.senha);
+            Statement stmt = conexao.createStatement();
+            String sql = "SELECT NOME, CPF FROM CLIENTE WHERE CPF = "+CPF;
+            stmt.executeQuery(sql);
+            ResultSet res = stmt.getResultSet();
             while(res.next()){
-                cli.setCPF(res.getInt("CPF"));
-                cli.setNome(res.getString("NOME"));
+                cli.setCPF(res.getInt("cpf"));
+                cli.setNome(res.getString("nome"));
             }
+            stmt.close();
+            conexao.close();
             return cli;
         }
         catch(SQLException e){
@@ -46,41 +52,20 @@ public class Cliente {
         }
     }
     
-    ResultSet buscaCliente(int CPF){
-        connectDB con = new connectDB();
-        Cliente cli = new Cliente();
-        try{
-            Connection conexao = DriverManager.getConnection(con.url, con.usuario, con.senha);
-            Statement stmt = conexao.createStatement();
-            String sql = "SELECT NOME FROM CLIENTE WHERE CPF = "+CPF;
-            stmt.executeQuery(sql);
-            ResultSet res = stmt.getResultSet();    
-            stmt.close();
-            conexao.close();
-            return res;
-        }
-        catch(SQLException e){
-            ResultSet res = null;
-            JOptionPane.showMessageDialog(null, "Nao foi possivel buscar o cliente");
-            return res;
-        }
-    }
-    
     void insereCliente(int CPF, String Nome, int CEP, String Rua, int Numero){
         connectDB con = new connectDB();
         try{
             Connection conexao = DriverManager.getConnection(con.url, con.usuario, con.senha);
             Statement stmt = conexao.createStatement();
-            String sql1 = "INSERT INTO CLIENTE VALUES("+CPF+", "+Nome+");";
-            String sql2 = "INSERT INTO ENDERECO VALUES("+CEP+", "+Rua+", "+Numero+", "+CPF+");";
+            String sql1 = "INSERT INTO CLIENTE VALUES("+CPF+", '"+Nome+"');";
+            String sql2 = "INSERT INTO ENDERECO VALUES("+CEP+", '"+Rua+"', "+Numero+");";
             stmt.executeUpdate(sql1);
             stmt.executeUpdate(sql2);
             stmt.close();
             conexao.close();
-            JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso");
         }
         catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Nao foi possivel inserir dados");
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     void removeCliente(int CPF){
