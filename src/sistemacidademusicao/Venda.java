@@ -5,16 +5,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Venda {
     
     private int IDNotaFiscal;
-    private Calendar dataVenda;
+    private String dataVenda;
     private double preco;
     private int idFun;
 
@@ -26,11 +26,11 @@ public class Venda {
         this.IDNotaFiscal = IDNotaFiscal;
     }
 
-    public Calendar getDataVenda() {
+    public String getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Calendar dataVenda) {
+    public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
 
@@ -50,15 +50,12 @@ public class Venda {
         this.idFun = idFun;
     }
     
-    
-    
-    void insereVenda(int IDNotaFiscal, Calendar dataVenda, double preco, int idfun){
+    void insereVenda(int IDNotaFiscal, String dataVenda, double preco, int idfun){
         connectDB con = new connectDB();
         try{
             Connection conexao = DriverManager.getConnection(con.url, con.usuario, con.senha);
             Statement stmt = conexao.createStatement();
-            Date data  = new Date(dataVenda.getTimeInMillis());
-            String sql1 = "INSERT INTO VENDAS VALUES("+IDNotaFiscal+", '"+data+"', "+preco+", "+idfun+");";
+            String sql1 = "INSERT INTO VENDAS VALUES("+IDNotaFiscal+", '"+dataVenda+"', "+preco+", "+idfun+");";
             stmt.executeUpdate(sql1);
             stmt.close();
             conexao.close();
@@ -79,9 +76,11 @@ public class Venda {
             stmt.executeQuery(sql);
             ResultSet res = stmt.getResultSet();
             while(res.next()){
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+                String dat = dateFormat.format(res.getDate("datavenda"));
                 Venda ven = new Venda();
                 ven.setIDNotaFiscal(res.getInt("idnotafiscal"));
-                ven.dataVenda.setTime(res.getDate("datavenda"));
+                ven.setDataVenda(dat);
                 ven.setPreco(res.getDouble("preco"));
                 ven.setIdFun(res.getInt("fk_empregado_id"));
                 vend.add(ven);

@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -299,7 +301,10 @@ public class telaVenda extends javax.swing.JFrame {
         }
         saveNota();
         String idfun = JOptionPane.showInputDialog("Digite o ID do funcionario: ");
-        vend.insereVenda(Integer.parseInt(fieldID.getText()), Calendar.getInstance(), Double.parseDouble(fieldTotal.getText()), Integer.parseInt(idfun));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        Calendar date = null;
+        String dat = dateFormat.format(date.getTimeInMillis());
+        vend.insereVenda(Integer.parseInt(fieldID.getText()), dat, Double.parseDouble(fieldTotal.getText()), Integer.parseInt(idfun));
         fieldID.setText(Integer.toString(Integer.parseInt(fieldID.getText())+1));
         areaNotaFiscal.setText("");
         fieldTotal.setText("0.0");
